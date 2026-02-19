@@ -54,13 +54,15 @@ const questions = QUESTIONS_CONFIG.split('\n')
     return { id: idx, label: label.trim(), choices, isMultiSelect };
   });
 
-const getInitialAnswers = () => {
-  const saved = localStorage.getItem('form_filler_answers');
-  if (saved) {
-    try {
-      return JSON.parse(saved);
-    } catch (e) {
-      console.error("Failed to parse saved answers", e);
+const getInitialAnswers = (ignoreSaved = false) => {
+  if (!ignoreSaved) {
+    const saved = localStorage.getItem('form_filler_answers');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error("Failed to parse saved answers", e);
+      }
     }
   }
   const initial: Record<number, { selected: number[], text: string }> = {};
@@ -180,11 +182,11 @@ export default function App() {
   }, [activeIdx, copyNote]);
 
   const reset = useCallback(() => {
-    setAnswers(getInitialAnswers());
-    setActiveIdx(0);
-    setShowToast(false);
     localStorage.removeItem('form_filler_answers');
     localStorage.removeItem('form_filler_active_idx');
+    setAnswers(getInitialAnswers(true));
+    setActiveIdx(0);
+    setShowToast(false);
     window.scrollTo(0, 0);
   }, []);
 
