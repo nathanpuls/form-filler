@@ -154,12 +154,16 @@ export default function App() {
         const isAlreadySelected = current.includes(cId);
         nextSelected = isAlreadySelected ? current.filter(i => i !== cId) : [...current, cId];
 
-        if (q.label === 'ADHD' && cId === 0 && !isAlreadySelected) {
-          nextSelected = [0];
-          setTimeout(() => {
-            if (activeIdx < questions.length - 1) setActiveIdx(activeIdx + 1);
-            else copyNote();
-          }, 100);
+        if (q.label === 'ADHD') {
+          if (cId === 0 && !isAlreadySelected) {
+            nextSelected = [0];
+            setTimeout(() => {
+              if (activeIdx < questions.length - 1) setActiveIdx(activeIdx + 1);
+              else copyNote();
+            }, 100);
+          } else if (cId !== 0 && !isAlreadySelected) {
+            nextSelected = nextSelected.filter(i => i !== 0);
+          }
         }
       } else {
         const isAlreadySelected = current.includes(cId);
