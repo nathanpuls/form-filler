@@ -1,0 +1,116 @@
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --border: #dddddd;
+  --accent: #0056b3;
+  --active-bg: #f0f7ff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, system-ui, sans-serif;
+  font-size: 15px;
+}
+
+body {
+  background: var(--bg);
+  padding: 8px;
+  line-height: 1.1;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #000;
+  padding-bottom: 3px;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+button {
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+  background: #fdfdfd;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+button:hover {
+  background: #eee;
+}
+
+button.selected {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+button.finish {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+}
+
+.q-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.q-row {
+  border-bottom: 1px solid #eee;
+}
+
+.q-row.active {
+  background: var(--active-bg);
+  outline: 1px solid var(--accent);
+}
+
+.q-label {
+  width: 200px;
+  padding: 6px 10px;
+  font-weight: bold;
+  text-align: right;
+  border-right: 1px solid #eee;
+}
+
+.q-controls {
+  padding: 6px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.other-input {
+  border: 1px solid var(--border);
+  padding: 2px 4px;
+  width: 180px;
+  height: 26px;
+}
+
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
